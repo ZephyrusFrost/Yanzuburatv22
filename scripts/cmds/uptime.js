@@ -1,38 +1,37 @@
-const { exec } = require('child_process');
-
 module.exports = {
   config: {
-    name: 'uptime',
-    version: '1.0',
-    author: 'Cruizex',
+    name: "uptime",
+aliases: ["upt"],
+    version: "1.0",
+    author: "OtinXSandip",
     role: 0,
-    description: {
-      en: 'Display the system uptime.',
+    shortDescription: {
+      en: "Displays the total number of users of the bot and check uptime "
     },
-    category: 'Utility',
+    longDescription: {
+      en: "Displays the total number of users who have interacted with the bot and check uptime."
+    },
+    category: "box chat",
     guide: {
-      en: '{pn} uptime',
-    },
+      en: "Use {p}totalusers to display the total number of users of the bot and check uptime."
+    }
   },
+  onStart: async function ({ api, event, args, usersData, threadsData }) {
+    try {
+      const allUsers = await usersData.getAll();
+      const allThreads = await threadsData.getAll();
+      const uptime = process.uptime();
 
-  getUptime: function (callback) {
-    const command = 'uptime -p';
+      const hours = Math.floor(uptime / 3600);
+      const minutes = Math.floor((uptime % 3600) / 60);
+      const seconds = Math.floor(uptime % 60);
 
-    exec(command, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Error: ${error.message}`);
-        callback('An error occurred while fetching uptime.');
-        return;
-      }
+      const uptimeString = `${hours} Hrs ${minutes} mins ${seconds} secs...`;
 
-      const uptimeString = stdout.trim();
-      callback(`System Uptime: ${uptimeString}`);
-    });
-  },
-
-  onStart: function ({ api, event }) {
-    this.getUptime((result) => {
-      api.sendMessage(result, event.threadID, event.messageID);
-    });
-  },
+      api.sendMessage(`(⁠ ⁠˘⁠ ⁠³⁠˘⁠)┌旦「 𝙾𝚗𝚕𝚒𝚗𝚎 」\n ${uptimeString}`, event.threadID);
+    } catch (error) {
+      console.error(error);
+      api.sendMessage("An error occurred while retrieving data.", event.threadID);
+    }
+  }
 };

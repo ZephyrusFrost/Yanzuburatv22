@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const GPT_API_URL = 'https://sandipapi.onrender.com/gpt';
-const PREFIXES = ['ai'];
+const PREFIXES = ['ai','yanzu','ask','gpt','!ai','?ai','-ai','+ai','#ai','&ai','×ai'];
 const horizontalLine = "━━━━━━━━━━━━━━━";
 
 module.exports = {
@@ -29,7 +29,7 @@ module.exports = {
       const prompt = event.body.substring(prefix.length).trim();
 
       if (!prompt) {
-        const defaultMessage = getCenteredHeader("𝙼𝚘𝚌𝚑𝚊 | 🧋✨") + "\n" + horizontalLine + "\nHello! Ask me anything!\n" + horizontalLine;
+        const defaultMessage = getCenteredHeader("𝙔𝘼𝙉𝙕𝙐 🤖") + "\n" + horizontalLine + "\nHello! Ask me anything!\n" + horizontalLine;
         await message.reply(defaultMessage);
         return;
       }
@@ -37,7 +37,7 @@ module.exports = {
       const answer = await getGPTResponse(prompt);
 
       // Adding header and horizontal lines to the answer
-      const answerWithHeader = getCenteredHeader("𝙼𝚘𝚌𝚑𝚊 | 🧋✨") + "\n" + horizontalLine + "\n" + answer + "\n" + horizontalLine;
+      const answerWithHeader = getCenteredHeader("𝙆𝙔𝙇𝙀'𝙎 🤖") + "\n" + horizontalLine + "\n" + answer + "\n" + horizontalLine;
       
       await message.reply(answerWithHeader);
     } catch (error) {

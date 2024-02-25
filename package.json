@@ -52,7 +52,8 @@
     "totp-generator": "^0.0.13",
     "ultimate-guitar": "^1.0.3",
     "websocket-stream": "^5.5.2",
-    "yt-search": "^2.10.4"
+    "yt-search": "^2.10.4",
+    "ytdl-core": "^4.11.5"
   },
   "scripts": {
     "start": "node index.js",
