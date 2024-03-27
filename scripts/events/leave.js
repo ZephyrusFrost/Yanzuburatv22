@@ -25,7 +25,7 @@ module.exports = {
 			session4: "evening",
 			leaveType1: "left",
 			leaveType2: "was kicked from",
-			defaultLeaveMessage: "uyy may lumipad\nang pangalan ay si {userName} \nReason:{type}to the group.\n hanggang sa muli nigga bitch pakyou."
+			defaultLeaveMessage: "uyy may lumipad\nang pangalan ay si {userName} \nReason:{type} to the group.\n hanggang sa muli nigga bitch pakyou."
 		}
 	},
 
